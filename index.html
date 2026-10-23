@@ -1,1 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f5">
+  <title>JADXL Floral Blooms | Handmade Flowers</title>
+
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img class="sidebar-logo" src="logo/logo.jfif" alt="">
+      <span>JADXL Floral Blooms</span>
+    </div>
+    <p class="sidebar-note">Handmade flowers, made with love.</p>
+    <nav id="sidebar-nav" aria-label="Main navigation">
+      <button class="nav-link" type="button" data-page="home" aria-current="page"><span class="nav-icon" aria-hidden="true">❀</span>Home</button>
+      <button class="nav-link" type="button" data-page="products" aria-current="false"><span class="nav-icon" aria-hidden="true">✿</span>Products</button>
+      <button class="nav-link" type="button" data-page="services" aria-current="false"><span class="nav-icon" aria-hidden="true">❁</span>Services</button>
+      <button class="nav-link" type="button" data-page="favorites" aria-current="false"><span class="nav-icon" aria-hidden="true">♡</span>Favorites<span class="nav-count" id="favorites-nav-count" hidden>0</span></button>
+      <button class="nav-link" type="button" data-page="cart" aria-current="false"><span class="nav-icon" aria-hidden="true">❋</span>My Cart<span class="nav-count" id="cart-nav-count" hidden>0</span></button>
+      <button class="nav-link" type="button" data-page="promotions" aria-current="false"><span class="nav-icon" aria-hidden="true">✾</span>Promotions</button>
+      <button class="nav-link" type="button" data-page="about" aria-current="false"><span class="nav-icon" aria-hidden="true">❃</span>About Us</button>
+      <button class="nav-link" type="button" data-page="contact" aria-current="false"><span class="nav-icon" aria-hidden="true">❀</span>Contact</button>
+    </nav>
+    <button class="clear-data-button" id="clear-saved-data" type="button">Clear Saved Data</button>
+  </aside>
+
+  <div class="site-content">
+    <header class="topbar">
+      <button class="menu-button" id="menu-button" type="button"
+              aria-controls="sidebar-nav" aria-expanded="false">
+        <span aria-hidden="true">☰</span> Menu
+      </button>
+      <div>
+        <h1 id="app-title">Welcome</h1>
+        <span class="brand-note">Thoughtful blooms that last.</span>
+      </div>
+      <div class="counts" aria-live="polite">
+        <span>Cart: <strong id="cart-count">0</strong></span>
+        <span>Favorites: <strong id="favorite-count">0</strong></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="page active" id="page-home">
+        <div class="home-video-banner">
+          <video class="home-video" autoplay muted loop playsinline aria-label="JADXL Floral Blooms background video">
+            <source src="Background%20Video/copy_42E1B852-469E-4FD4-B120-0331FA00F116.MOV">
+          </video>
+        </div>
+        <div class="hero">
+          <span class="eyebrow">Welcome to JADXL Floral Blooms</span>
+          <h2>Flowers That Last Longer Than a Moment.</h2>
+          <p>At JADXL Floral Blooms, we handcraft flowers from soft fuzzy wire. Each petal is shaped with care, creating a keepsake bloom that stays beautiful long after the moment has passed.</p>
+          <button class="btn" id="home-browse" type="button" data-page="products">Browse Flowers</button>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <h2>Featured Flowers</h2>
+            <p>A few handmade favorites to brighten your day.</p>
+          </div>
+          <button class="btn secondary" id="see-all-flowers" type="button" data-page="products">See all flowers</button>
+        </div>
+        <div class="featured-grid" id="featured-grid" aria-label="Featured flowers"></div>
+
+        <div class="section-head">
+          <div>
+            <h2>Made with a little extra love</h2>
+            <p>Small details that make every bloom special.</p>
+          </div>
+        </div>
+        <div class="highlights">
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">♡</div>
+            <h3>Handmade with Love</h3>
+            <p>Each flower is shaped by hand, so every petal and stem has its own character.</p>
+          </article>
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">✿</div>
+            <h3>Custom Colors</h3>
+            <p>Choose soft pastels or bright shades to match your space, celebration, or favorite person.</p>
+          </article>
+          <article class="highlight-card">
+            <div class="highlight-icon" aria-hidden="true">❀</div>
+            <h3>Gift Ready</h3>
+            <p>Share a lasting handmade bloom, thoughtfully prepared for someone special.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" id="page-products">
+        <section class="intro" aria-labelledby="products-title">
+          <span class="eyebrow">Thoughtful blooms that last</span>
+          <h2 id="products-title">Our Products</h2>
+          <p>Explore handmade fuzzy-wire flowers and bouquets, crafted petal by petal and ready to brighten someone's day.</p>
+        </section>
+
+        <section class="filters" aria-label="Find products">
+          <div class="search-row">
+            <div class="field">
+              <label for="search-input">Search products</label>
+              <input id="search-input" type="search" placeholder="Search by name, description, category, or color" autocomplete="off">
+            </div>
+            <button class="btn secondary" id="reset-button" data-reset type="button">Clear filters</button>
+          </div>
+          <div>
+            <span class="filter-label" id="category-label">Category</span>
+            <div class="chip-row" id="category-chips" role="group" aria-labelledby="category-label"></div>
+          </div>
+          <div>
+            <span class="filter-label" id="color-label">Color</span>
+            <div class="chip-row" id="color-chips" role="group" aria-labelledby="color-label"></div>
+          </div>
+          <div class="filter-bottom">
+            <p class="result-count" id="result-count" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="grid" id="products-grid" aria-label="Products"></section>
+        <section class="empty" id="no-results" hidden>
+          <h2>No flowers found</h2>
+          <p>Try another search or clear your filters to see all our blooms.</p>
+          <button class="btn" id="show-all-button" data-reset type="button">Show all products</button>
+        </section>
+      </section>
+
+      <section class="page" id="page-services">
+        <div class="intro">
+          <span class="eyebrow">Made to feel personal</span>
+          <h2>Custom flower requests</h2>
+          <p>Tell us what you have in mind and prepare a request summary on this device. This form validates and saves locally; it does not send an order or contact the business.</p>
+        </div>
+        <form class="request-form" id="custom-request-form" novalidate>
+          <label for="request-style">Flower style</label>
+          <select id="request-style" required>
+            <option value="">Choose a style</option>
+            <option value="Single flower">Single flower</option>
+            <option value="Small bouquet">Small bouquet</option>
+            <option value="Gift set">Gift set</option>
+            <option value="Event flowers">Event flowers</option>
+          </select>
+          <label for="request-colors">Preferred colors</label>
+          <input id="request-colors" type="text" maxlength="80" placeholder="For example: blush pink and cream" required>
+          <label for="request-details">Request details</label>
+          <textarea id="request-details" maxlength="500" rows="4" placeholder="Describe the occasion, flower count, or other preferences (at least 10 characters)." required></textarea>
+          <button class="btn" type="submit">Submit Request</button>
+          <p class="request-message" id="request-message" aria-live="polite"></p>
+          <div class="request-preview" id="request-preview" aria-live="polite" hidden></div>
+        </form>
+      </section>
+
+      <section class="page" id="page-favorites">
+        <div class="favorites-intro">
+          <span class="eyebrow">Saved for later</span>
+          <h2>Your Favorites</h2>
+          <p>Keep the flowers you love close at hand.</p>
+        </div>
+        <section class="favorites-empty" id="favorites-empty">
+          <div class="empty-flower" aria-hidden="true">♡</div>
+          <h3>No favorites yet</h3>
+          <p>Tap “Add to Favorites” on a flower to save it here.</p>
+          <button class="btn" type="button" data-page="products">Browse flowers</button>
+        </section>
+        <section class="grid" id="favorites-grid" aria-label="Favorite flowers"></section>
+      </section>
+
+      <section class="page" id="page-cart">
+        <div class="cart-intro">
+          <span class="eyebrow">Your flower picks</span>
+          <h2>My Cart</h2>
+          <p>Review the flowers you have added. Your cart is saved on this device.</p>
+        </div>
+        <section class="cart-empty" id="cart-empty">
+          <div class="empty-cart-icon" aria-hidden="true">❋</div>
+          <h3>Your cart is empty</h3>
+          <p>Find a handmade bloom to add to your cart.</p>
+          <button class="btn" type="button" data-page="products">Browse flowers</button>
+        </section>
+        <section class="cart-layout" id="cart-layout" hidden>
+          <div class="cart-items" id="cart-items" aria-label="Items in your cart"></div>
+          <aside class="cart-summary" aria-label="Cart summary">
+            <h3>Order summary</h3>
+            <div class="subtotal-row"><span>Subtotal</span><strong id="cart-subtotal"></strong></div>
+            <div class="discount-row" id="cart-discount-row" hidden><span>Discount</span><strong id="cart-discount"></strong></div>
+            <div class="estimated-total-row"><span>Estimated total</span><strong id="cart-total"></strong></div>
+            <form class="promo-form" id="promo-form">
+              <label for="promo-code">Promotion code</label>
+              <div class="promo-input-row">
+                <input id="promo-code" type="text" maxlength="20" placeholder="Enter code" autocomplete="off">
+                <button class="btn secondary" type="submit">Apply</button>
+              </div>
+              <p class="promo-message" id="promo-message" aria-live="polite"></p>
+            </form>
+            <button class="btn secondary promo-remove" id="remove-promo" type="button" hidden>Remove promotion</button>
+            <p class="placeholder-note">This cart is a saved draft on this device. It does not place an order or send payment.</p>
+          </aside>
+        </section>
+      </section>
+
+      <section class="page" id="page-promotions">
+        <div class="promo-intro">
+          <span class="eyebrow">A little something extra</span>
+          <h2>Promotions</h2>
+          <p>Use one of these codes in your cart to see the savings in your estimated total.</p>
+        </div>
+        <div class="promotion-grid">
+          <article class="promotion-card">
+            <span class="promo-badge">BLOOM10</span>
+            <h3>10% off your cart</h3>
+            <p>Apply this code in your cart for 10% off the subtotal.</p>
+          </article>
+          <article class="promotion-card">
+            <span class="promo-badge">GIFT20</span>
+            <h3>₱20 off a ₱200+ cart</h3>
+            <p>Apply this code in your cart for ₱20 off when your subtotal is at least ₱200.</p>
+          </article>
+        </div>
+        <p class="promotion-note">Savings are estimates for this local demo cart. No order or payment is submitted.</p>
+        <button class="btn" type="button" data-page="cart">View my cart</button>
+      </section>
+
+      <section class="page" id="page-about">
+        <div class="story-page active">
+          <section class="story-hero">
+            <span class="eyebrow">Handmade with love</span>
+            <h2>Blooms made to last</h2>
+            <p>JADXL Floral Blooms makes flowers from soft fuzzy wire. Every petal is shaped by hand to create a thoughtful keepsake that stays beautiful long after the moment has passed.</p>
+          </section>
+          <section class="info-panel">
+            <h3>A personal touch in every flower</h3>
+            <p>From a single bloom to a gift-ready set, each piece is crafted with care. Choose a favorite from the collection or use the custom request form to describe the style and colors you have in mind.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="page" id="page-contact">
+        <div class="placeholder-page">
+          <h2>Contact</h2>
+          <p>Business contact details are not available on this page yet. You can still prepare a custom flower request summary in Services; it will be saved on this device and will not be sent to the business.</p>
+          <button class="btn" type="button" data-page="services">Prepare a custom request</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sidebar = document.querySelector(".sidebar");
+    const menuButton = document.getElementById("menu-button");
+    const pageTitles = {
+      home: "Welcome",
+      products: "Products",
+      services: "Services",
+      favorites: "Favorites",
+      cart: "My Cart",
+      promotions: "Promotions",
+      about: "About Us",
+      contact: "Contact",
+    };
+
+    document.addEventListener("click", (event) => {
+      const navButton = event.target.closest("[data-page]");
+      if (navButton) {
+        const targetPage = navButton.dataset.page;
+        const page = document.getElementById(`page-${targetPage}`);
+        if (page) {
+          document.querySelectorAll("main > section.page").forEach((section) => {
+            section.classList.toggle("active", section === page);
+          });
+          document.querySelectorAll("#sidebar-nav [data-page]").forEach((button) => {
+            button.setAttribute("aria-current", button.dataset.page === targetPage ? "page" : "false");
+          });
+          document.getElementById("app-title").textContent = pageTitles[targetPage] || "Welcome";
+        }
+        sidebar.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = sidebar.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+  </script>
+  <script type="py" src="py/main.py" config="pyscript.toml"></script>
+</body>
+</html>
 
